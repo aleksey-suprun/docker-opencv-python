@@ -1,5 +1,6 @@
 FROM balenalib/raspberrypi3-python:3.5-stretch-build
 
+ENV NPROC 4
 ENV OPENCV_VERSION 4.1.0
 ENV OPENCV_SRC_DOWNLOAD_URL https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz
 
@@ -24,7 +25,7 @@ RUN mkdir /opencv \
         -D BUILD_TESTS=OFF \
         -D BUILD_PERF_TESTS=OFF \
         .. \
-    && make -j$(nproc) \
+    && make -j${NPROC} \
     && make install \
     && cd / \
     && rm -rf /opencv

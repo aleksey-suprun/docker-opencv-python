@@ -1,0 +1,19 @@
+os: linux
+language: generic
+install: skip
+
+addons:
+  apt:
+    packages:
+    - docker-ce
+    - pass
+
+env:
+    - ARCH=amd64
+    - ARCH=arm32v7
+
+matrix:
+  fast_finish: true
+
+script:
+  - docker build -t asuprun/opencv-python:4.1.0-3.5-${ARCH} -f 4.1.0-3.5/debian/stretch/${ARCH}/Dockerfile .
